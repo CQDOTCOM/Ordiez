@@ -5,12 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
 # For rspec testing
 group :development, :test do
   gem 'rspec-rails', '~> 3.6'
 end
 
-group :test do  
+group :test do
   gem 'shoulda'
   gem 'factory_bot_rails'
 end
