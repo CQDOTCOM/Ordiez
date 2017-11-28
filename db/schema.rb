@@ -50,6 +50,6 @@ ActiveRecord::Schema.define(version: 20171128135227) do
     t.index ["meal_id"], name: "index_order_items_on_meal_id"
   end
 
-  add_foreign_key "order_items", "delivery_orders"
-  add_foreign_key "order_items", "meals"
+  add_foreign_key "order_items", "delivery_orders", on_delete: :cascade
+  add_foreign_key "order_items", "meals", on_delete: :cascade
 end
