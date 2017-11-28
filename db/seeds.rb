@@ -9,6 +9,8 @@
 Meal.destroy_all
 DeliveryOrder.destroy_all
 OrderItem.destroy_all
+Feedback.destroy_all
+
 
 
 10.times do
@@ -21,7 +23,7 @@ end
 
 5.times do
   DeliveryOrder.create(
-    order_id: 'GO12' + DeliveryOrder.ids.sample.to_s,
+    order_id: 'GO12' + Meal.all.sample.id.to_s,
     serving_datetime: Faker::Time.between(Date.today, Date.today + 5, :all)
   )
 end
@@ -32,5 +34,23 @@ end
     meal_id: Meal.all.sample.id,
     quantity: [*1..10].sample,
     unit_price: [*10..300].sample
+  )
+end
+
+3.times do
+  Feedback.create(
+    ratable_type: DeliveryOrder,
+    ratable_id: DeliveryOrder.all.sample.id,
+    rating: -1,
+    comment: "Food is too salty"
+  )
+end
+
+2.times do
+  Feedback.create(
+    ratable_type: OrderItem,
+    ratable_id: OrderItem.all.sample.id,
+    rating: -1,
+    comment: "Food is too little"
   )
 end

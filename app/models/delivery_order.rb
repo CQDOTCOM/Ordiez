@@ -1,10 +1,11 @@
 class DeliveryOrder < ApplicationRecord
   validates :order_id, :serving_datetime, presence: true
   has_many :order_items
+  has_many :feedbacks, as: :ratable
 
     def as_json(options={})
     super(:only => [:order_id],
-          :methods => [:delivery_date, :delivery_time],
+          :methods => [:delivery_date, :delivery_time, :feedback_submitted],
           :include => {
             :order_items => {
             :only => [],
@@ -24,5 +25,10 @@ class DeliveryOrder < ApplicationRecord
      range2 = range2.strftime('%I:%M:%S %p').to_s
      range3 = range1 + range2
   end
+
+  def feedback_submitted
+    self.feedbacks.any?
+  end
+
 
 end
