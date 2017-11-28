@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'rack-cors', :require => 'rack/cors'
 
 # For rspec testing
 group :development, :test do
